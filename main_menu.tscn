@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://c41wvex284mkc"]
+[gd_scene load_steps=17 format=3 uid="uid://cn486g64a1xgn"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_ybg4d"]
-[ext_resource type="FontFile" path="res://fonts/Cinzel-VariableFont_wght.ttf" id="2_hct50"]
-[ext_resource type="FontFile" path="res://fonts/TimesNewPixel.ttf" id="3_h85kp"]
+[ext_resource type="FontFile" uid="uid://dx66yl0fgvk8a" path="res://fonts/Cinzel-VariableFont_wght.ttf" id="2_hct50"]
+[ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://fonts/TimesNewPixel.ttf" id="3_h85kp"]
 
 [sub_resource type="Gradient" id="Gradient_cq3et"]
 offsets = PackedFloat32Array(0, 0.04, 0.111111, 0.888889, 0.96, 1)

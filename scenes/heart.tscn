@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://vwrmbd3oipeb"]
+
+[sub_resource type="Gradient" id="Gradient_xmoxj"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2i8yy"]
+gradient = SubResource("Gradient_xmoxj")
+width = 20
+
+[node name="Heart" type="TextureRect"]
+texture = SubResource("GradientTexture1D_2i8yy")
+stretch_mode = 1
