@@ -20,7 +20,7 @@ func _ready() -> void:
 	bpm = bpm
 
 func initialize() -> void:
-	bpm = 200;
+	bpm = 120;
 	hero = $/root/World/Hero;
 	music = $/root/World/Music;
 	update_hero();
