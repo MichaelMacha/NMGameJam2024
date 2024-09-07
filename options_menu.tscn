@@ -1,0 +1,174 @@
+[gd_scene load_steps=17 format=3 uid="uid://8st75teqm0wr"]
+
+[ext_resource type="Script" path="res://options_menu.gd" id="1_xdc1l"]
+[ext_resource type="FontFile" path="res://fonts/TimesNewPixel.ttf" id="2_lyhng"]
+
+[sub_resource type="Gradient" id="Gradient_88xef"]
+offsets = PackedFloat32Array(0, 0.04, 0.08, 0.92, 0.96, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0.501961, 1, 0, 0, 0.501961, 1, 1, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 25
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wrbyi"]
+gradient = SubResource("Gradient_88xef")
+
+[sub_resource type="Gradient" id="Gradient_vyyie"]
+offsets = PackedFloat32Array(0, 0.04, 0.111111, 0.888889, 0.96, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0.501961, 1, 0, 0, 0.501961, 1, 1, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 27
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uqgrw"]
+gradient = SubResource("Gradient_vyyie")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6bi74"]
+gradient = SubResource("Gradient_88xef")
+
+[sub_resource type="Animation" id="Animation_u3m7e"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [SubResource("GradientTexture1D_wrbyi"), SubResource("GradientTexture1D_uqgrw"), SubResource("GradientTexture1D_6bi74")]
+}
+
+[sub_resource type="Gradient" id="Gradient_l4plg"]
+offsets = PackedFloat32Array(0, 0.04, 0.111111, 0.888889, 0.96, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0.501961, 1, 0, 0, 0.501961, 1, 1, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 27
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7cu5b"]
+gradient = SubResource("Gradient_l4plg")
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_2p6fp"]
+offsets = PackedFloat32Array(0, 0.04, 0.148148, 0.851852, 0.96, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0.501961, 1, 0, 0, 0.501961, 1, 0.901961, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 27
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vjpwo"]
+gradient = SubResource("Gradient_2p6fp")
+
+[sub_resource type="Animation" id="Animation_vqdtq"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [SubResource("GradientTexture1D_7cu5b"), SubResource("GradientTexture1D_vjpwo"), SubResource("GradientTexture1D_7cu5b")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aml2m"]
+_data = {
+"RESET": SubResource("Animation_u3m7e"),
+"options-pulse": SubResource("Animation_vqdtq")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsyhh"]
+font = ExtResource("2_lyhng")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvu41"]
+font = ExtResource("2_lyhng")
+font_size = 50
+
+[node name="OptionsMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xdc1l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aml2m")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(2.5, 360)
+texture = SubResource("GradientTexture1D_wrbyi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Blank" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_fsyhh")
+horizontal_alignment = 1
+
+[node name="Volume" type="HSlider" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 1
+value = 50.0
+
+[node name="Blank2" type="Control" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute (Not recommended)"
+label_settings = SubResource("LabelSettings_fsyhh")
+horizontal_alignment = 1
+
+[node name="Mute" type="CheckBox" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer2"]
+layout_mode = 2
+
+[node name="Blank3" type="Control" parent="VBoxContainer/CenterContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+text = "◀️Back"
+label_settings = SubResource("LabelSettings_uvu41")
+
+[node name="BackButton" type="Button" parent="VBoxContainer/CenterContainer2/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="value_changed" from="VBoxContainer/CenterContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="VBoxContainer/CenterContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/VBoxContainer/Label/BackButton" to="." method="_on_back_button_pressed"]
