@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(0,linear_to_db(value));
+	AudioServer.set_bus_volume_db(0,linear_to_db(value/100));
 	
 	
 

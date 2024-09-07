@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://8st75teqm0wr"]
+[gd_scene load_steps=18 format=3 uid="uid://crjeqr323uh5b"]
 
 [ext_resource type="Script" path="res://options_menu.gd" id="1_xdc1l"]
-[ext_resource type="FontFile" path="res://fonts/TimesNewPixel.ttf" id="2_lyhng"]
+[ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://fonts/TimesNewPixel.ttf" id="2_lyhng"]
+[ext_resource type="AudioStream" uid="uid://b7jhpcm2yhfr3" path="res://audio/music/Bass.ogg" id="3_et2yq"]
 
 [sub_resource type="Gradient" id="Gradient_88xef"]
 offsets = PackedFloat32Array(0, 0.04, 0.08, 0.92, 0.96, 1)
@@ -168,6 +169,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_et2yq")
+autoplay = true
 
 [connection signal="value_changed" from="VBoxContainer/CenterContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="VBoxContainer/CenterContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]

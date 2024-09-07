@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cn486g64a1xgn"]
+[gd_scene load_steps=18 format=3 uid="uid://dhkwllp3x2ljj"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_ybg4d"]
 [ext_resource type="FontFile" uid="uid://dx66yl0fgvk8a" path="res://fonts/Cinzel-VariableFont_wght.ttf" id="2_hct50"]

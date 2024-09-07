@@ -50,7 +50,6 @@ func die() -> void:
 		$/root/World/Powerups.add_child.bind(powerup).call_deferred()
 		
 		powerup.global_position = self.global_position
-		
 	queue_free()	
 
 func recoil(direction : Vector2) -> void:
