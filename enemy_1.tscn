@@ -18,6 +18,7 @@ radius = 19.2354
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_hj46s")
+powerup_threshold = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_i13kl")

@@ -7,6 +7,9 @@ class_name Enemy extends CharacterBody2D
 
 @export_range(0.0, 1.0) var powerup_threshold = 0.2
 
+## Amount to change the BPM by when enemy is killed
+@export var bpm_change := 1.0
+
 @export_category("Recoil Settings")
 @export var recoil_distance_base := 25.0
 @export var recoil_time := 0.25
@@ -42,7 +45,7 @@ func hurt(normal : Vector2) -> void:
 		recoil(-normal)
 
 func die() -> void:
-	if randf() > powerup_threshold:
+	if randf() < powerup_threshold:
 		var powerup := preload("res://powerup.tscn").instantiate()
 		
 		# Adding a child node needs to be deferred, and binding it to the powerup
@@ -50,7 +53,9 @@ func die() -> void:
 		$/root/World/Powerups.add_child.bind(powerup).call_deferred()
 		
 		powerup.global_position = self.global_position
-		
+	
+	MusicManager.bpm += bpm_change
+	
 	queue_free()	
 
 func recoil(direction : Vector2) -> void:

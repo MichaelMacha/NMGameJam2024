@@ -3,20 +3,28 @@ extends Node
 ##Base BPM of music
 const BASE_BPM = 120.0
 
-@onready var hero := $/root/World/Hero
-@onready var music := $/root/World/Music
+@onready var hero : Hero #= $/root/World/Hero
+@onready var music : AudioStreamPlayer #= $/root/World/Music
 @onready var pitch_shift := AudioServer.get_bus_effect(1, 0)
 
 @export var bpm = BASE_BPM:
 	set(value):
 		bpm = value
-		hero.update_next_attack1_time()
-		hero.update_next_attack2_time()
+		
+		if hero:
+			hero.update_next_attack1_time()
+			hero.update_next_attack2_time()
+		
 		update_tempo()
 	get():
 		return bpm
 
 func _ready() -> void:
+	if get_tree().root.has_node("/root/World/Hero"):
+		hero = $/root/World/Hero
+	if get_tree().root.has_node("/root/World/Music"):
+		music = $/root/World/Music
+	
 	#initial BPM is currently 120, but that's adjustable with this field.
 	bpm = bpm
 
@@ -32,5 +40,6 @@ func update_tempo() -> void:
 	#
 	# This will change the absolute tempo, while avoiding distorting the
 	# audio to match it.
-	music.pitch_scale = (bpm / BASE_BPM)
-	pitch_shift.pitch_scale = (BASE_BPM / bpm)
+	if music:
+		music.pitch_scale = (bpm / BASE_BPM)
+		pitch_shift.pitch_scale = (BASE_BPM / bpm)

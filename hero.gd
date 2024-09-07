@@ -1,12 +1,16 @@
 class_name Hero extends CharacterBody2D
 
-@onready var ui := $/root/World/UI
+@onready var ui : UI 
+@onready var invulnerability: Timer = $Invulnerability
 
 @export var movement_speed := 80.0
 @export var hearts := 3:
 	set(value):
 		hearts = value
-		ui.update_hearts(value)
+		
+		if ui:
+			ui.update_hearts(value)
+		
 ## Our hero's attack power level. As this goes up, new attacks are unlocked.
 @export var power_level := 0:
 	set(value):
@@ -40,6 +44,8 @@ class_name Hero extends CharacterBody2D
 ## Same, but for attack two
 @export var attack2_beat_count := 2
 
+@export var vulnerable := true
+
 # We're having some trouble with using a timer here. Timers apparently can't
 # be relied on for < 0.5 second intervals. So, consider keeping a record of
 # the next attack, in seconds, and implementing it in _physics_process, which
@@ -50,6 +56,8 @@ var next_attack2 := 0.0
 var last_attack2 := 0.0
 
 func _ready() -> void:
+	ui = $/root/World/UI
+	
 	# A number of elements are best set here, to call their set/get
 	# functionality with their initial value. It's a known but pretty minor
 	# quirk of Godot.
@@ -112,12 +120,24 @@ func attack2():
 
 ## Handle all behavior which relates to hero injury
 func hurt(normal : Vector2) -> void:
-	hearts -= 1
-	if hearts <= 0:
-		GameManager.hero_alive = false
-		queue_free()
-	else:
-		recoil(-normal)
+	if vulnerable:
+		hearts -= 1
+		
+		make_invulnerable()
+		
+		if hearts <= 0:
+			GameManager.hero_alive = false
+			die()
+		else:
+			recoil(-normal)
+
+func make_invulnerable() -> void:
+	vulnerable = false
+	invulnerability.start()
+
+func die() -> void:
+	MusicManager.bpm = MusicManager.BASE_BPM
+	queue_free()
 
 ## Bounce the character backwards from the impact
 func recoil(direction : Vector2) -> void:
@@ -132,3 +152,6 @@ func recoil(direction : Vector2) -> void:
 func powerup() -> void:
 	print("Power Up")
 	power_level += 1
+
+func _on_invulnerability_timeout() -> void:
+	vulnerable = true
