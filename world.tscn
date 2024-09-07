@@ -15,11 +15,11 @@
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_fa2kd"]
 stream_count = 3
 stream_0/stream = ExtResource("4_kxpht")
-stream_0/volume = 0.0
-stream_1/stream = ExtResource("5_dry0v")
-stream_1/volume = -18.0
-stream_2/stream = ExtResource("6_0qxtv")
-stream_2/volume = 0.0
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("6_0qxtv")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("5_dry0v")
+stream_2/volume = -60.0
 
 [node name="World" type="Node2D"]
 
@@ -30,6 +30,11 @@ tile_set = SubResource("TileSet_nkp04")
 
 [node name="Hero" parent="." instance=ExtResource("1_tkbck")]
 position = Vector2(93, 105)
+
+[node name="Powerups" type="Node2D" parent="."]
+
+[node name="Powerup" parent="Powerups" instance=ExtResource("9_xma8m")]
+position = Vector2(8, 113)
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -50,8 +55,5 @@ bus = &"Music"
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("8_e6ycx")
 enemy_scene = ExtResource("2_2g2gr")
-
-[node name="Powerup" parent="." instance=ExtResource("9_xma8m")]
-position = Vector2(8, 113)
 
 [editable path="Hero"]

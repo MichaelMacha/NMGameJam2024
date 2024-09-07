@@ -8,7 +8,27 @@ class_name Hero extends CharacterBody2D
 		hearts = value
 		ui.update_hearts(value)
 ## Our hero's attack power level. As this goes up, new attacks are unlocked.
-@export var power_level := 0
+@export var power_level := 0:
+	set(value):
+		power_level = value
+		
+		for i in $/root/World/Music.stream.stream_count:
+			var stream : AudioStream = $/root/World/Music.stream.get_sync_stream(i)
+			if stream:
+				if i <= power_level:
+					$/root/World/Music.stream.set_sync_stream_volume(i, 0)
+				else:
+					$/root/World/Music.stream.set_sync_stream_volume(i, -60)
+			
+		
+		# Throwing this into a setter is a little sloppy, but lacking time for
+		# variability, it should cover all cases here.
+		if value >= 2:
+			$Rotary.visible = true
+			$Rotary.process_mode = Node.PROCESS_MODE_INHERIT
+		else:
+			$Rotary.visible = false
+			$Rotary.process_mode = Node.PROCESS_MODE_DISABLED
 
 @export_category("Recoil Settings")
 @export var recoil_distance_base := 25.0
@@ -34,9 +54,7 @@ func _ready() -> void:
 	# functionality with their initial value. It's a known but pretty minor
 	# quirk of Godot.
 	hearts = hearts
-	
-	##initial BPM is currently 120, but that's adjustable with this field.
-	#bpm = bpm
+	power_level = power_level
 
 func _process(_delta: float) -> void:
 	## Get our velocity axis
