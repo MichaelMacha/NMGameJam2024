@@ -17,7 +17,7 @@ class_name Hero extends CharacterBody2D
 			ui.update_hearts(value)
 
 @export_category("Weapon Stuff")
-@export var maximum_projectiles := 5
+@export var maximum_projectiles := 4
 
 ## Our hero's attack power level. As this goes up, new attacks are unlocked.
 @export var power_level := 0:
