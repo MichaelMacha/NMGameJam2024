@@ -75,4 +75,8 @@ func hurt(normal : Vector2) -> void:
 ## Bounce the character backwards from the impact
 func recoil(direction : Vector2) -> void:
 	var tween := get_tree().create_tween()
-	tween.tween_property(self, "position", global_position + direction * recoil_distance_base, recoil_time)
+	tween.tween_property(
+		self,
+		"position",
+		global_position + direction * recoil_distance_base,
+		recoil_time)
