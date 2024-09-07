@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 @export var hearts := 3
-@export var movement_speed := 20.0
+@export var movement_speed := 40.0
 
 @onready var hero = $/root/World/Hero
 
