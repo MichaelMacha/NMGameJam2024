@@ -17,6 +17,8 @@ const MAX_BPM = 240.0
 		bpm = value
 		bpm = clampf(bpm, 0, MAX_BPM - 1)
 		
+		GameManager.update_engine_speed()
+		
 		if hero:
 			hero.update_next_attack1_time()
 			hero.update_next_attack2_time()
