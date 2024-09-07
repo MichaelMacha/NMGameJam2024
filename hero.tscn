@@ -13,9 +13,8 @@
 resource_name = "Idle"
 loop_mode = 1
 
-[sub_resource type="Animation" id="Animation_6npnx"]
-resource_name = "walk horiz"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_gasc7"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -26,31 +25,27 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_7d3jg")]
-}
-
-[sub_resource type="Animation" id="Animation_2otd4"]
-resource_name = "walk up"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_1rrvb")]
+"values": [ExtResource("3_cdwsw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hand:visible")
+tracks/1/path = NodePath("Hand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -97,8 +92,9 @@ tracks/2/keys = {
 "values": [Vector2(1, -7)]
 }
 
-[sub_resource type="Animation" id="Animation_gasc7"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_6npnx"]
+resource_name = "walk horiz"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,7 +105,22 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_cdwsw")]
+"values": [ExtResource("3_7d3jg")]
+}
+
+[sub_resource type="Animation" id="Animation_mbyu2"]
+resource_name = "walk left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_0tpct")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -133,7 +144,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_xd8x3"]
@@ -176,8 +187,9 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_mbyu2"]
-resource_name = "walk left"
+[sub_resource type="Animation" id="Animation_2otd4"]
+resource_name = "walk up"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -188,31 +200,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_0tpct")]
+"values": [ExtResource("5_1rrvb")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hand:position")
+tracks/1/path = NodePath("Hand:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-12, -8)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hand:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7rme"]
@@ -230,8 +230,8 @@ _data = {
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_aww3f"]
 gradient = SubResource("Gradient_rwm2t")
-width = 16
-height = 16
+width = 8
+height = 8
 
 [node name="Hero" type="CharacterBody2D"]
 collision_layer = 2

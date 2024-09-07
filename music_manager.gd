@@ -59,7 +59,7 @@ func update_tempo() -> void:
 		pitch_shift.pitch_scale = (BASE_BPM / bpm)
 
 func update_display_bpm() -> void:
-	$"/root/World/UI/Main/BPM Label".text = str(bpm, " BPM")
+	$"/root/World/UI/Main/HBoxContainer/BPM Label".text = str(bpm, " BPM")
 
 
 	

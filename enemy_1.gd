@@ -1,5 +1,21 @@
 class_name Enemy extends CharacterBody2D
 
+enum State {
+	IDLE,
+	WALK_DOWN,
+	WALK_UP
+}
+var state : State:
+	set(value):
+		if state != value:
+			state = value
+			
+			if value == State.WALK_DOWN:
+				$AnimationPlayer.play(&"walk down")
+			elif value == State.WALK_UP:
+				$AnimationPlayer.play(&"walk up")
+		
+
 @export var hearts := 3
 @export var movement_speed := 30.0
 
@@ -27,13 +43,13 @@ func _physics_process(_delta: float) -> void:
 	
 	#Update sprite orientation and animation
 	if velocity:
-		$Sprite2D.flip_h = (sign(velocity.x) == -1)
+		#$Sprite2D.flip_h = (sign(velocity.x) == -1)
 		
 		if not attacking:
 			if velocity.y < -0.1:
-				$AnimationPlayer.play(&"walk down")
+				state = State.WALK_UP
 			elif velocity.y > 0.1:
-				$AnimationPlayer.play(&"walk up")
+				state = State.WALK_DOWN
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:

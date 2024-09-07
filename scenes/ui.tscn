@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://chjjbtvtcsecv"]
+[gd_scene load_steps=7 format=3 uid="uid://chjjbtvtcsecv"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_a61el"]
 [ext_resource type="PackedScene" uid="uid://vwrmbd3oipeb" path="res://scenes/heart.tscn" id="2_7hc6k"]
 [ext_resource type="Script" path="res://scenes/game_over_panel.gd" id="3_1lpg1"]
 [ext_resource type="Script" path="res://scenes/you_win.gd" id="3_yyd5w"]
+
+[sub_resource type="Gradient" id="Gradient_jgnhp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nnlsi"]
+gradient = SubResource("Gradient_jgnhp")
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_a61el")
@@ -102,14 +107,24 @@ fit_content = true
 [node name="PressAnyKeyTimer" type="Timer" parent="Main/Game Over"]
 one_shot = true
 
-[node name="BPM Label" type="RichTextLabel" parent="Main"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -80.0
-offset_bottom = 46.0
+offset_left = -160.0
+offset_bottom = 64.0
 grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Main/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_nnlsi")
+
+[node name="BPM Label" type="RichTextLabel" parent="Main/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
 text = "120 BPM"
 fit_content = true
 

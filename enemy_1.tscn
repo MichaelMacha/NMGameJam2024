@@ -1,36 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://gwkipo8yyh02"]
+[gd_scene load_steps=13 format=3 uid="uid://gwkipo8yyh02"]
 
 [ext_resource type="Script" path="res://enemy_1.gd" id="1_hj46s"]
 [ext_resource type="Texture2D" uid="uid://db18wcsqgodgx" path="res://graphics/Rythm_Survivor_EM_Front.png" id="2_6pra0"]
+[ext_resource type="Texture2D" uid="uid://d364nr6et8cmr" path="res://graphics/Rythm_Survivor_EM_Front_2.png" id="3_7f6ng"]
+[ext_resource type="Texture2D" uid="uid://k60h1icalblm" path="res://graphics/Rythm_Survivor_EM_Back.png" id="4_o0err"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i13kl"]
-
-[sub_resource type="Animation" id="Animation_mwsig"]
-resource_name = "idle"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_bt6dg"]
-resource_name = "walk down"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_6pra0")]
-}
-
-[sub_resource type="Animation" id="Animation_xbdd6"]
-resource_name = "walk up"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_m4w8o"]
-resource_name = "attack"
 
 [sub_resource type="Animation" id="Animation_tr5ht"]
 length = 0.001
@@ -46,6 +21,81 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("2_6pra0")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_m4w8o"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_mwsig"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_bt6dg"]
+resource_name = "walk down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_6pra0"), ExtResource("3_7f6ng"), ExtResource("2_6pra0"), ExtResource("3_7f6ng")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_xbdd6"]
+resource_name = "walk up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_o0err")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gxgws"]
 _data = {
@@ -55,8 +105,6 @@ _data = {
 "walk down": SubResource("Animation_bt6dg"),
 "walk up": SubResource("Animation_xbdd6")
 }
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m2dvg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rsavl"]
 radius = 19.2354
@@ -79,10 +127,6 @@ libraries = {
 "": SubResource("AnimationLibrary_gxgws")
 }
 autoplay = "idle"
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_m2dvg")
-anim_player = NodePath("../AnimationPlayer")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
