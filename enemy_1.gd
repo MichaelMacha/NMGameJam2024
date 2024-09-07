@@ -46,7 +46,13 @@ func hurt(normal : Vector2) -> void:
 
 func die() -> void:
 	if randf() < powerup_threshold:
-		var powerup := preload("res://powerup.tscn").instantiate()
+		var powerup : Node2D
+		
+		match randi() % 2:
+			0:
+				powerup = preload("res://powerup.tscn").instantiate()
+			1:
+				powerup = preload("res://health_pickup.tscn").instantiate()
 		
 		# Adding a child node needs to be deferred, and binding it to the powerup
 		# determines what is added.

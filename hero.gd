@@ -4,10 +4,13 @@ class_name Hero extends CharacterBody2D
 @onready var invulnerability: Timer = $Invulnerability
 
 @export var movement_speed := 80.0
+@export var max_hearts := 4
 @export var hearts := 3:
 	set(value):
 		hearts = value
+		hearts = clampi(hearts, 0, max_hearts - 1)
 		
+		#BUG: This seems to occasionally reach 5, shouldn't go above 4
 		if ui:
 			ui.update_hearts(value)
 		

@@ -14,5 +14,4 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventJoypadButton:
 		#Half-assed, do something better if you come back to this.
 		if press_any_key:
-			#GameManager.hero_alive = true
 			get_tree().change_scene_to_file("res://world.tscn")

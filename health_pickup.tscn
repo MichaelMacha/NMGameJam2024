@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cryuo1jvro253"]
+
+[ext_resource type="PackedScene" uid="uid://g204d0ikuion" path="res://powerup.tscn" id="1_kf41g"]
+[ext_resource type="Script" path="res://health pickup.gd" id="2_0m3r3"]
+
+[node name="HealthPickup" instance=ExtResource("1_kf41g")]
+script = ExtResource("2_0m3r3")
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(1, 0, 0, 1)
