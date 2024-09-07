@@ -1,7 +1,10 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://gl3v4ppy51h6"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://gl3v4ppy51h6"]
 
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_yury0"]
 resource_name = "PitchShift"
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_kdole"]
+resource_name = "EQ"
 
 [resource]
 bus/1/name = &"Music"
@@ -12,3 +15,5 @@ bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectPitchShift_yury0")
 bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectEQ_kdole")
+bus/1/effect/1/enabled = false

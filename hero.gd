@@ -1,9 +1,13 @@
 class_name Hero extends CharacterBody2D
 
 @onready var music := $/root/World/Music
+@onready var ui := $/root/World/UI
 
 @export var movement_speed := 80.0
-@export var hearts := 3
+@export var hearts := 3:
+	set(value):
+		hearts = value
+		ui.update_hearts(value)
 
 @export_category("Recoil Settings")
 @export var recoil_distance_base := 25.0
@@ -12,6 +16,14 @@ class_name Hero extends CharacterBody2D
 @export_category("Music Settings")
 ## Number of beats to wait before triggering an attack
 @export var beat_count := 4
+
+# We're having some trouble with using a timer here. Timers apparently can't
+# be relied on for < 0.5 second intervals. So, consider keeping a record of
+# the next attack, in seconds, and implementing it in _physics_process, which
+# should be much more reliable.
+var next_attack := 0.0
+
+var last_attack := 0.0
 
 ##Base BPM of music
 const BASE_BPM = 120.0
@@ -22,28 +34,19 @@ const BASE_BPM = 120.0
 @export var bpm = BASE_BPM:
 	set(value):
 		bpm = value
-		$AttackTimer.wait_time = beat_count * 60.0/bpm
-		
-		# This trick involves the difference between pitch_scale for an audio
-		# playback stream, and pitch_scale for an actual pitch shifting effect.
-		# Pitch scale for a playback will affect time, but a pitch shift
-		# effect's pitch scale will only affect pitch.
-		#
-		# Therefore, to speed up music without (overly) distorting its pitch,
-		# we must adjust the pitch shift in the opposite direction of the
-		# playback's pitch scale, by a proportionate (inverted) amount.
-		#
-		# This will change the absolute BPM, while avoiding distorting the
-		# audio to match it.
-		music.pitch_scale = 1.0 * (bpm / BASE_BPM)
-		pitch_shift.pitch_scale = 1.0 * (BASE_BPM / bpm)
-		print(pitch_shift)
+		update_next_attack_time()
+		update_tempo()
 	get():
 		return bpm
 
 func _ready() -> void:
-	#Set up initial BPM
-	bpm = 120.0
+	# A number of elements are best set here, to call their set/get
+	# functionality with their initial value. It's a known but pretty minor
+	# quirk of Godot.
+	hearts = hearts
+	
+	#initial BPM is currently 120, but that's adjustable with this field.
+	bpm = bpm
 
 func _process(delta: float) -> void:
 	## Get our velocity axis
@@ -58,6 +61,39 @@ func _process(delta: float) -> void:
 	if velocity:
 		$Sprite2D.flip_h = (sign(velocity.x) == -1)
 
+func _physics_process(delta: float) -> void:
+	var seconds := Time.get_ticks_msec()/1000.0
+	
+	if seconds > next_attack:
+		last_attack = seconds
+		update_next_attack_time()
+		
+		attack1()
+
+func update_next_attack_time() -> void:
+	next_attack = last_attack + beat_count * 60.0 / bpm
+
+func update_tempo() -> void:
+	# This trick involves the difference between pitch_scale for an audio
+	# playback stream, and pitch_scale for an actual pitch shifting effect.
+	# Pitch scale for a playback will affect time, but a pitch shift
+	# effect's pitch scale will only affect pitch.
+	#
+	# Therefore, to speed up music without (overly) distorting its sound,
+	# we must adjust the pitch shift in the opposite direction of the
+	# playback's pitch scale, by a proportionate (inverted) amount.
+	#
+	# This will change the absolute tempo, while avoiding distorting the
+	# audio to match it.
+	music.pitch_scale = (bpm / BASE_BPM)
+	pitch_shift.pitch_scale = (BASE_BPM / bpm)
+	
+#Basic attack
+func attack1():
+	var attack := preload("res://attack.tscn").instantiate()
+	get_tree().root.add_child(attack)
+	attack.global_position = self.global_position
+
 ## Handle all behavior which relates to hero injury
 func hurt(normal : Vector2) -> void:
 	hearts -= 1
@@ -71,11 +107,3 @@ func hurt(normal : Vector2) -> void:
 func recoil(direction : Vector2) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "position", global_position + direction * recoil_distance_base, recoil_time)
-
-## Attack every elapsation of AttackTimer. Vary the lenght of AttackTimer so
-## that it keeps up with the BPM.
-func _on_attack_timer_timeout() -> void:
-	print("Attack")
-	var attack := preload("res://attack.tscn").instantiate()
-	get_tree().root.add_child(attack)
-	attack.global_position = self.global_position

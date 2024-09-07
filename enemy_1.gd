@@ -31,6 +31,9 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	
 	pass # Replace with function body.
 
+#TODO: hurt and recoil seem almost identical. If they stay identical, then they
+#should go into a base class inherited by both Hero and Enemy.
+
 func hurt(normal : Vector2) -> void:
 	hearts -= 1
 	if hearts <= 0:

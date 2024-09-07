@@ -1,16 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3m3tgxo6kubj"]
+[gd_scene load_steps=9 format=3 uid="uid://d3m3tgxo6kubj"]
 
 [ext_resource type="PackedScene" uid="uid://dpm88xvfchvj5" path="res://hero.tscn" id="1_tkbck"]
 [ext_resource type="PackedScene" uid="uid://gwkipo8yyh02" path="res://enemy_1.tscn" id="2_2g2gr"]
 [ext_resource type="Script" path="res://interpolated_camera.gd" id="3_34kdt"]
 [ext_resource type="AudioStream" uid="uid://b178lee40cvb3" path="res://audio/music/Basic Drum.ogg" id="4_kxpht"]
+[ext_resource type="AudioStream" uid="uid://b4jk1gxfuugty" path="res://audio/music/Organ.ogg" id="5_dry0v"]
+[ext_resource type="PackedScene" uid="uid://chjjbtvtcsecv" path="res://scenes/ui.tscn" id="5_jyuib"]
 
 [sub_resource type="TileSet" id="TileSet_nkp04"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_fa2kd"]
-stream_count = 1
+stream_count = 2
 stream_0/stream = ExtResource("4_kxpht")
 stream_0/volume = 0.0
+stream_1/stream = ExtResource("5_dry0v")
+stream_1/volume = 0.0
 
 [node name="World" type="Node2D"]
 
@@ -33,5 +37,7 @@ script = ExtResource("3_34kdt")
 stream = SubResource("AudioStreamSynchronized_fa2kd")
 autoplay = true
 bus = &"Music"
+
+[node name="UI" parent="." instance=ExtResource("5_jyuib")]
 
 [editable path="Hero"]
