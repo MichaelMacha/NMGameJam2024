@@ -2,7 +2,7 @@ extends Node
 
 ##Base BPM of music
 const BASE_BPM = 120.0
-const MAX_BPM = 240.0
+const MAX_BPM = 190.0 #240.0
 
 @onready var hero : Hero:
 	get():
@@ -15,15 +15,21 @@ const MAX_BPM = 240.0
 @export var bpm = BASE_BPM:
 	set(value):
 		bpm = value
-		bpm = clampf(bpm, 0, MAX_BPM - 1)
+		bpm = clampf(bpm, 0, MAX_BPM)
 		
 		GameManager.update_engine_speed()
+		
+		update_display_bpm()
 		
 		if hero:
 			hero.update_next_attack1_time()
 			hero.update_next_attack2_time()
 		
 		update_tempo()
+		
+		# See if we've reached critical BPM and won
+		if bpm == MAX_BPM:
+			win()
 	get():
 		return bpm
 
@@ -51,3 +57,10 @@ func update_tempo() -> void:
 	if music:
 		music.pitch_scale = (bpm / BASE_BPM)
 		pitch_shift.pitch_scale = (BASE_BPM / bpm)
+
+func update_display_bpm() -> void:
+	$"/root/World/UI/Main/BPM Label".text = str(bpm, " BPM")
+
+func win() -> void:
+	print("You Win")
+	

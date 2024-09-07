@@ -62,4 +62,15 @@ fit_content = true
 [node name="PressAnyKeyTimer" type="Timer" parent="Main/Game Over"]
 one_shot = true
 
+[node name="BPM Label" type="RichTextLabel" parent="Main"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_bottom = 46.0
+grow_horizontal = 0
+text = "120 BPM"
+fit_content = true
+
 [connection signal="timeout" from="Main/Game Over/PressAnyKeyTimer" to="Main/Game Over" method="_on_press_any_key_timer_timeout"]

@@ -135,6 +135,7 @@ func attack2():
 func hurt(normal : Vector2) -> void:
 	if vulnerable:
 		hearts -= 1
+		MusicManager.bpm -= 5
 		
 		make_invulnerable()
 		
