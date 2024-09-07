@@ -8,12 +8,17 @@ class_name Hero extends CharacterBody2D
 @export var hearts := 3:
 	set(value):
 		hearts = value
+		
+		#Ensure we don't go below zero or above our maximum
 		hearts = clampi(hearts, 0, max_hearts - 1)
 		
 		#BUG: This seems to occasionally reach 5, shouldn't go above 4
 		if ui:
 			ui.update_hearts(value)
-		
+
+@export_category("Weapon Stuff")
+@export var maximum_projectiles := 5
+
 ## Our hero's attack power level. As this goes up, new attacks are unlocked.
 @export var power_level := 0:
 	set(value):
@@ -98,6 +103,11 @@ func _physics_process(_delta: float) -> void:
 		
 		if power_level >= 1:
 			attack2()
+		
+		#From level 3, increase number of projectiles up to max_projectiles
+		if power_level >= 3:
+			for i in range(3, min(power_level, maximum_projectiles + 3)):
+				attack2()
 
 func update_next_attack1_time() -> void:
 	next_attack1 = last_attack1 + attack1_beat_count * 60.0 / MusicManager.bpm

@@ -2,6 +2,7 @@ extends Node
 
 ##Base BPM of music
 const BASE_BPM = 120.0
+const MAX_BPM = 240.0
 
 @onready var hero : Hero:
 	get():
@@ -14,6 +15,7 @@ const BASE_BPM = 120.0
 @export var bpm = BASE_BPM:
 	set(value):
 		bpm = value
+		bpm = clampf(bpm, 0, MAX_BPM - 1)
 		
 		if hero:
 			hero.update_next_attack1_time()
