@@ -6,7 +6,7 @@ extends Camera2D
 @export var distance_strength := 500.0
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_instance_valid(track):
 		var d : Vector2 = track.global_position - self.global_position
 		var speed : float = \

@@ -30,6 +30,8 @@ tile_set = SubResource("TileSet_nkp04")
 [node name="Hero" parent="." instance=ExtResource("1_tkbck")]
 position = Vector2(93, 105)
 
+[node name="Enemies" type="Node2D" parent="."]
+
 [node name="Enemy1" parent="." instance=ExtResource("2_2g2gr")]
 position = Vector2(471, 178)
 

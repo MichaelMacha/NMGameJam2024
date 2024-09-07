@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgvvha4sndups"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_r6vui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8vry"]
+
+[sub_resource type="Gradient" id="Gradient_a7d4m"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uagss"]
+gradient = SubResource("Gradient_a7d4m")
+width = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mp4or"]
+radius = 15.0333
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_r6vui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i8vry")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 20)
+texture = SubResource("GradientTexture1D_uagss")
+
+[node name="HarmArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HarmArea"]
+shape = SubResource("CircleShape2D_mp4or")
+
+[connection signal="body_entered" from="HarmArea" to="." method="_on_harm_area_body_entered"]

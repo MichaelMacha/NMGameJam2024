@@ -10,7 +10,8 @@ const BASE_BPM = 120.0
 @export var bpm = BASE_BPM:
 	set(value):
 		bpm = value
-		hero.update_next_attack_time()
+		hero.update_next_attack1_time()
+		hero.update_next_attack2_time()
 		update_tempo()
 	get():
 		return bpm

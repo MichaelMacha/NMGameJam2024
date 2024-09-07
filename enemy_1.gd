@@ -9,7 +9,7 @@ class_name Enemy extends CharacterBody2D
 @export var recoil_distance_base := 25.0
 @export var recoil_time := 0.25
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_instance_valid(hero):
 		var direction = (hero.global_position - global_position).normalized()
 		
@@ -26,10 +26,8 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	
 	#We know body is a hero on the basis of the collision layer, so there should
 	#be no need to check.
-	var hero : Hero = body
-	hero.hurt((self.global_position - body.global_position).normalized())
-	
-	pass # Replace with function body.
+	var hero_ : Hero = body
+	hero_.hurt((self.global_position - body.global_position).normalized())
 
 #TODO: hurt and recoil seem almost identical. If they stay identical, then they
 #should go into a base class inherited by both Hero and Enemy.
@@ -38,8 +36,8 @@ func hurt(normal : Vector2) -> void:
 	hearts -= 1
 	if hearts <= 0:
 		queue_free()
-	
-	recoil(-normal)
+	else:
+		recoil(-normal)
 
 func recoil(direction : Vector2) -> void:
 	var tween := get_tree().create_tween()

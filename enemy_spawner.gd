@@ -20,11 +20,12 @@ var last_spawn := 0.0
 func update_next_spawn() -> void:
 	next_spawn = last_spawn + beat_count * 60.0 / MusicManager.bpm
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	#Don't spawn in an enemy if it doesn't have a hero to chase.
+	if not GameManager.hero_alive:
+		return
+		
 	var seconds = Time.get_ticks_msec()/1000.0
-	var screen_transform := \
-		(viewport.get_screen_transform() * 
-		viewport.get_canvas_transform()).affine_inverse()
 	
 	if seconds > next_spawn:
 		last_spawn = seconds
@@ -33,7 +34,8 @@ func _physics_process(delta: float) -> void:
 		#Spawn in new enemies
 		for i in spawn_quantity:
 			var enemy = enemy_scene.instantiate()
-			get_tree().root.add_child(enemy)
+			$/root/World/Enemies.add_child(enemy)
+			#get_tree().root.add_child(enemy)
 			
 			# The best way to distribute the spawn point, to keep things even,
 			# would be to double the width and height, add them together, and
@@ -58,14 +60,18 @@ func _physics_process(delta: float) -> void:
 					enemy.global_position = \
 						random_point_right()
 
+@warning_ignore("integer_division")
 func random_point_top() -> Vector2:
 	return camera.global_position + Vector2(randi() % WIDTH, -20) - Vector2(WIDTH/2, HEIGHT/2)
 
+@warning_ignore("integer_division")
 func random_point_bottom() -> Vector2:
 	return camera.global_position + Vector2(randi() % WIDTH, HEIGHT + 20) - Vector2(WIDTH/2, HEIGHT/2)
 
+@warning_ignore("integer_division")
 func random_point_left() -> Vector2:
 	return camera.global_position + Vector2(-20, randi() % HEIGHT) - Vector2(WIDTH/2, HEIGHT/2)
 
+@warning_ignore("integer_division")
 func random_point_right() -> Vector2:
 	return camera.global_position + Vector2(WIDTH + 20, randi() % HEIGHT) - Vector2(WIDTH/2, HEIGHT/2)
