@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnh6573v6pxrf"]
+[gd_scene load_steps=7 format=3 uid="uid://da27c2dgndtej"]
 
 [ext_resource type="Script" path="res://options_menu.gd" id="1_xdc1l"]
 [ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://TimesNewPixel.ttf" id="2_lyhng"]
 
 [sub_resource type="Gradient" id="Gradient_puuxy"]
 offsets = PackedFloat32Array(0, 0.04, 0.08, 0.92, 0.96, 1)
-colors = PackedColorArray(0, 0, 0.243137, 1, 1, 0, 0, 1, 0, 0, 0.501961, 1, 0, 0, 0.501961, 1, 1, 0, 0, 1, 0, 0, 0.243137, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0.501961, 1, 0, 0, 0.501961, 1, 1, 0, 0, 1, 1, 1, 1, 1)
 metadata/_snap_enabled = true
 metadata/_snap_count = 25
 
@@ -29,15 +29,15 @@ grow_vertical = 2
 script = ExtResource("1_xdc1l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 325.75)
-scale = Vector2(4.5, 652.5)
+position = Vector2(320, 180)
+scale = Vector2(2.5, 360)
 texture = SubResource("GradientTexture1D_mf2iq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="Blank" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
@@ -53,7 +53,7 @@ label_settings = SubResource("LabelSettings_fsyhh")
 horizontal_alignment = 1
 
 [node name="Volume" type="HSlider" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(600, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 1
 value = 50.0
