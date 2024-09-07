@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpm88xvfchvj5"]
+[gd_scene load_steps=6 format=3 uid="uid://dpm88xvfchvj5"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_3rrxq"]
+[ext_resource type="PackedScene" uid="uid://tr67crp7utdy" path="res://rotary.tscn" id="2_t1l2d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28k2v"]
 
@@ -13,6 +14,8 @@ gradient = SubResource("Gradient_4ysqc")
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_3rrxq")
+
+[node name="Rotary" parent="." instance=ExtResource("2_t1l2d")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_28k2v")
