@@ -1,6 +1,5 @@
 class_name Hero extends CharacterBody2D
 
-@onready var music := $/root/World/Music
 @onready var ui := $/root/World/UI
 
 @export var movement_speed := 80.0
@@ -22,22 +21,7 @@ class_name Hero extends CharacterBody2D
 # the next attack, in seconds, and implementing it in _physics_process, which
 # should be much more reliable.
 var next_attack := 0.0
-
 var last_attack := 0.0
-
-##Base BPM of music
-const BASE_BPM = 120.0
-
-@export_category("Game Scoped Data")
-@onready var pitch_shift := AudioServer.get_bus_effect(1, 0)
-
-@export var bpm = BASE_BPM:
-	set(value):
-		bpm = value
-		update_next_attack_time()
-		update_tempo()
-	get():
-		return bpm
 
 func _ready() -> void:
 	# A number of elements are best set here, to call their set/get
@@ -45,8 +29,8 @@ func _ready() -> void:
 	# quirk of Godot.
 	hearts = hearts
 	
-	#initial BPM is currently 120, but that's adjustable with this field.
-	bpm = bpm
+	##initial BPM is currently 120, but that's adjustable with this field.
+	#bpm = bpm
 
 func _process(delta: float) -> void:
 	## Get our velocity axis
@@ -71,22 +55,7 @@ func _physics_process(delta: float) -> void:
 		attack1()
 
 func update_next_attack_time() -> void:
-	next_attack = last_attack + beat_count * 60.0 / bpm
-
-func update_tempo() -> void:
-	# This trick involves the difference between pitch_scale for an audio
-	# playback stream, and pitch_scale for an actual pitch shifting effect.
-	# Pitch scale for a playback will affect time, but a pitch shift
-	# effect's pitch scale will only affect pitch.
-	#
-	# Therefore, to speed up music without (overly) distorting its sound,
-	# we must adjust the pitch shift in the opposite direction of the
-	# playback's pitch scale, by a proportionate (inverted) amount.
-	#
-	# This will change the absolute tempo, while avoiding distorting the
-	# audio to match it.
-	music.pitch_scale = (bpm / BASE_BPM)
-	pitch_shift.pitch_scale = (BASE_BPM / bpm)
+	next_attack = last_attack + beat_count * 60.0 / MusicManager.bpm
 	
 #Basic attack
 func attack1():
