@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cngkwsgmuafkn"]
+
+[ext_resource type="Script" path="res://attack.gd" id="1_xp6py"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74h3f"]
+radius = 48.3735
+
+[node name="Attack" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_xp6py")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_74h3f")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -48, 9, -47, 17, -44, 27, -39, 35, -34, 41, -23, 44, -14, 46, -1, 45, 15, 39, 24, 35, 33, 27, 40, 16, 46, 6, 48, -4, 48, -18, 45, -28, 38, -36, 29, -41, 19, -44, 9, -47, -1, -44, -15, -38, -27, -28, -37, -15, -45)
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_timer_timeout"]

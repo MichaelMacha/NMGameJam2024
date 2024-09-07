@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://i0he7k25gy0g"]
+
+[ext_resource type="PackedScene" uid="uid://cuswc08tnm7ev" path="res://hero.tscn" id="1_tkbck"]
+[ext_resource type="PackedScene" uid="uid://jwhj06v5ibdc" path="res://enemy_1.tscn" id="2_2g2gr"]
+[ext_resource type="Script" path="res://interpolated_camera.gd" id="3_34kdt"]
+[ext_resource type="Script" path="res://enemy_spawner.gd" id="8_e6ycx"]
+[ext_resource type="PackedScene" uid="uid://ds1y7r4ujkqnm" path="res://powerup.tscn" id="9_xma8m"]
+
+[sub_resource type="TileSet" id="TileSet_nkp04"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_fa2kd"]
+stream_count = 3
+stream_0/volume = 0.0
+stream_1/volume = -18.0
+stream_2/volume = 0.0
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_nkp04")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+
+[node name="Hero" parent="." instance=ExtResource("1_tkbck")]
+position = Vector2(93, 105)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="." instance=ExtResource("2_2g2gr")]
+position = Vector2(471, 178)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(93, 105)
+script = ExtResource("3_34kdt")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_fa2kd")
+autoplay = true
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("8_e6ycx")
+enemy_scene = ExtResource("2_2g2gr")
+
+[node name="Powerup" parent="." instance=ExtResource("9_xma8m")]
+position = Vector2(8, 113)
+
+[editable path="Hero"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpj6wyk6prplw"]
+
+[ext_resource type="Script" path="res://rotary.gd" id="1_8nnm3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xyi7f"]
+
+[sub_resource type="Gradient" id="Gradient_m0qwo"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_um2q1"]
+gradient = SubResource("Gradient_m0qwo")
+width = 20
+
+[node name="Rotary" type="Node2D"]
+script = ExtResource("1_8nnm3")
+
+[node name="Origin" type="Node2D" parent="."]
+
+[node name="Shield" type="Area2D" parent="Origin"]
+position = Vector2(50, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/Shield"]
+shape = SubResource("CircleShape2D_xyi7f")
+
+[node name="Sprite2D" type="Sprite2D" parent="Origin/Shield"]
+scale = Vector2(1, 20)
+texture = SubResource("GradientTexture1D_um2q1")
+
+[connection signal="body_entered" from="Origin/Shield" to="." method="_on_shield_body_entered"]
