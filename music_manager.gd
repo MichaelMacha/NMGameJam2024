@@ -3,8 +3,12 @@ extends Node
 ##Base BPM of music
 const BASE_BPM = 120.0
 
-@onready var hero : Hero #= $/root/World/Hero
-@onready var music : AudioStreamPlayer #= $/root/World/Music
+@onready var hero : Hero:
+	get():
+		return $/root/World/Hero
+@onready var music : AudioStreamPlayer:
+	get():
+		return $/root/World/Music
 @onready var pitch_shift := AudioServer.get_bus_effect(1, 0)
 
 @export var bpm = BASE_BPM:

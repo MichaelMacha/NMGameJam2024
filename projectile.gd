@@ -3,6 +3,11 @@ extends CharacterBody2D
 @export var speed := 60.0
 
 func _ready():
+	var enemies := $/root/World/Enemies
+	
+	if enemies.get_children().is_empty():
+		return
+	
 	#Reduce from all enemies to closest enemy
 	var target = $/root/World/Enemies.get_children().reduce(
 		func(accum, child):

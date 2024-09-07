@@ -137,6 +137,7 @@ func make_invulnerable() -> void:
 
 func die() -> void:
 	MusicManager.bpm = MusicManager.BASE_BPM
+	ui.get_node("Main/Game Over").reveal()
 	queue_free()
 
 ## Bounce the character backwards from the impact

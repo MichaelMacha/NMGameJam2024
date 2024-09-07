@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3m3tgxo6kubj"]
+[gd_scene load_steps=13 format=3 uid="uid://d3m3tgxo6kubj"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_6mxli"]
 [ext_resource type="PackedScene" uid="uid://dpm88xvfchvj5" path="res://hero.tscn" id="1_tkbck"]
 [ext_resource type="PackedScene" uid="uid://gwkipo8yyh02" path="res://enemy_1.tscn" id="2_2g2gr"]
 [ext_resource type="Script" path="res://interpolated_camera.gd" id="3_34kdt"]
@@ -22,6 +23,7 @@ stream_2/stream = ExtResource("5_dry0v")
 stream_2/volume = -60.0
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_6mxli")
 
 [node name="Background" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_nkp04")
