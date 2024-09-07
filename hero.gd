@@ -7,6 +7,8 @@ class_name Hero extends CharacterBody2D
 	set(value):
 		hearts = value
 		ui.update_hearts(value)
+## Our hero's attack power level. As this goes up, new attacks are unlocked.
+@export var power_level := 0
 
 @export_category("Recoil Settings")
 @export var recoil_distance_base := 25.0
@@ -52,17 +54,21 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	var seconds := Time.get_ticks_msec()/1000.0
 	
+	#NOTE: These conditionals could be simplified into a function...
 	if seconds > next_attack1:
 		last_attack1 = seconds
 		update_next_attack1_time()
 		
-		attack1()
+		# Just here for consistency...
+		if power_level >= 0:
+			attack1()
 	
 	if seconds > next_attack2:
 		last_attack2 = seconds
 		update_next_attack2_time()
 		
-		attack2()
+		if power_level >= 1:
+			attack2()
 
 func update_next_attack1_time() -> void:
 	next_attack1 = last_attack1 + attack1_beat_count * 60.0 / MusicManager.bpm
@@ -103,3 +109,8 @@ func recoil(direction : Vector2) -> void:
 		"position",
 		global_position + direction * recoil_distance_base,
 		recoil_time)
+
+# Increase our power. Keep this simple for now.
+func powerup() -> void:
+	print("Power Up")
+	power_level += 1

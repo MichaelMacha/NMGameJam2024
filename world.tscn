@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3m3tgxo6kubj"]
+[gd_scene load_steps=12 format=3 uid="uid://d3m3tgxo6kubj"]
 
 [ext_resource type="PackedScene" uid="uid://dpm88xvfchvj5" path="res://hero.tscn" id="1_tkbck"]
 [ext_resource type="PackedScene" uid="uid://gwkipo8yyh02" path="res://enemy_1.tscn" id="2_2g2gr"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chjjbtvtcsecv" path="res://scenes/ui.tscn" id="5_jyuib"]
 [ext_resource type="AudioStream" uid="uid://b7jhpcm2yhfr3" path="res://audio/music/Bass.ogg" id="6_0qxtv"]
 [ext_resource type="Script" path="res://enemy_spawner.gd" id="8_e6ycx"]
+[ext_resource type="PackedScene" uid="uid://g204d0ikuion" path="res://powerup.tscn" id="9_xma8m"]
 
 [sub_resource type="TileSet" id="TileSet_nkp04"]
 
@@ -49,5 +50,8 @@ bus = &"Music"
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("8_e6ycx")
 enemy_scene = ExtResource("2_2g2gr")
+
+[node name="Powerup" parent="." instance=ExtResource("9_xma8m")]
+position = Vector2(8, 113)
 
 [editable path="Hero"]
