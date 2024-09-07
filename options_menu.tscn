@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://da27c2dgndtej"]
 
 [ext_resource type="Script" path="res://options_menu.gd" id="1_xdc1l"]
-[ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://TimesNewPixel.ttf" id="2_lyhng"]
+[ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://fonts/TimesNewPixel.ttf" id="2_lyhng"]
 
 [sub_resource type="Gradient" id="Gradient_puuxy"]
 offsets = PackedFloat32Array(0, 0.04, 0.08, 0.92, 0.96, 1)

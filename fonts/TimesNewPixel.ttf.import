@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dx66yl0fgvk8a"
-path="res://.godot/imported/Cinzel-VariableFont_wght.ttf-29add25d62de97d6dd4c1d6a2bc35a89.fontdata"
+uid="uid://cftqemw7jbjtm"
+path="res://.godot/imported/TimesNewPixel.ttf-48bc98f7e142069af6f3f5b152102b34.fontdata"
 
 [deps]
 
-source_file="res://Cinzel-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/Cinzel-VariableFont_wght.ttf-29add25d62de97d6dd4c1d6a2bc35a89.fontdata"]
+source_file="res://fonts/TimesNewPixel.ttf"
+dest_files=["res://.godot/imported/TimesNewPixel.ttf-48bc98f7e142069af6f3f5b152102b34.fontdata"]
 
 [params]
 
