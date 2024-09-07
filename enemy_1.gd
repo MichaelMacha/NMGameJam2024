@@ -3,7 +3,9 @@ class_name Enemy extends CharacterBody2D
 @export var hearts := 3
 @export var movement_speed := 30.0
 
-@onready var hero = $/root/World/Hero
+@onready var hero : Hero:
+	get():
+		return get_tree().root.get_node("/root/World/Hero")
 
 @export_range(0.0, 1.0) var powerup_threshold = 0.2
 
@@ -14,6 +16,8 @@ class_name Enemy extends CharacterBody2D
 @export var recoil_distance_base := 25.0
 @export var recoil_time := 0.25
 
+var attacking := false
+
 func _physics_process(_delta: float) -> void:
 	if is_instance_valid(hero):
 		var direction = (hero.global_position - global_position).normalized()
@@ -21,9 +25,15 @@ func _physics_process(_delta: float) -> void:
 		velocity = direction * movement_speed
 		move_and_slide()
 	
-	#Update sprite orientation
+	#Update sprite orientation and animation
 	if velocity:
 		$Sprite2D.flip_h = (sign(velocity.x) == -1)
+		
+		if not attacking:
+			if velocity.y < -0.1:
+				$AnimationPlayer.play(&"walk down")
+			elif velocity.y > 0.1:
+				$AnimationPlayer.play(&"walk up")
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
@@ -33,6 +43,13 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	#be no need to check.
 	var hero_ : Hero = body
 	hero_.hurt((self.global_position - body.global_position).normalized())
+	
+	#Update animation to play attack
+	$AnimationPlayer.play(&"attack")
+	attacking = true
+	
+	await get_tree().create_timer(0.5).timeout
+	attacking = false
 
 #TODO: hurt and recoil seem almost identical. If they stay identical, then they
 #should go into a base class inherited by both Hero and Enemy.

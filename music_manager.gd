@@ -29,7 +29,7 @@ const MAX_BPM = 190.0 #240.0
 		
 		# See if we've reached critical BPM and won
 		if bpm == MAX_BPM:
-			win()
+			GameManager.win()
 	get():
 		return bpm
 
@@ -61,6 +61,5 @@ func update_tempo() -> void:
 func update_display_bpm() -> void:
 	$"/root/World/UI/Main/BPM Label".text = str(bpm, " BPM")
 
-func win() -> void:
-	print("You Win")
+
 	

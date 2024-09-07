@@ -82,8 +82,8 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 	
 	#Update sprite flip to movement direction
-	if velocity:
-		$Sprite2D.flip_h = (sign(velocity.x) == -1)
+	#if velocity:
+		#$Sprite2D.flip_h = (sign(velocity.x) == -1)
 
 func _physics_process(_delta: float) -> void:
 	var seconds := Time.get_ticks_msec()/1000.0
@@ -108,6 +108,20 @@ func _physics_process(_delta: float) -> void:
 		if power_level >= 3:
 			for i in range(3, min(power_level, maximum_projectiles + 3)):
 				attack2()
+	
+	# Ugly, but 48-hour functional
+	if velocity:
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x > 0.1:
+				$AnimationPlayer.play(&"walk right")
+			elif velocity.x < -0.1:
+				$AnimationPlayer.play(&"walk left")
+			#$AnimationPlayer.play(&"walk horiz")
+		else:
+			if velocity.y < -0.1:
+				$AnimationPlayer.play(&"walk up")
+			else:
+				$AnimationPlayer.play(&"walk down")
 
 func update_next_attack1_time() -> void:
 	next_attack1 = last_attack1 + attack1_beat_count * 60.0 / MusicManager.bpm

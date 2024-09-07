@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 60.0
+@export var speed := 240.0
 
 func _ready():
 	var enemies := $/root/World/Enemies

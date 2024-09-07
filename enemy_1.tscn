@@ -1,13 +1,60 @@
-[gd_scene load_steps=7 format=3 uid="uid://gwkipo8yyh02"]
+[gd_scene load_steps=12 format=3 uid="uid://gwkipo8yyh02"]
 
 [ext_resource type="Script" path="res://enemy_1.gd" id="1_hj46s"]
+[ext_resource type="Texture2D" uid="uid://db18wcsqgodgx" path="res://graphics/Rythm_Survivor_EM_Front.png" id="2_6pra0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i13kl"]
 
-[sub_resource type="Gradient" id="Gradient_n3n7y"]
+[sub_resource type="Animation" id="Animation_mwsig"]
+resource_name = "idle"
+loop_mode = 1
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vusu7"]
-gradient = SubResource("Gradient_n3n7y")
+[sub_resource type="Animation" id="Animation_bt6dg"]
+resource_name = "walk down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_6pra0")]
+}
+
+[sub_resource type="Animation" id="Animation_xbdd6"]
+resource_name = "walk up"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_m4w8o"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_tr5ht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_6pra0")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxgws"]
+_data = {
+"RESET": SubResource("Animation_tr5ht"),
+"attack": SubResource("Animation_m4w8o"),
+"idle": SubResource("Animation_mwsig"),
+"walk down": SubResource("Animation_bt6dg"),
+"walk up": SubResource("Animation_xbdd6")
+}
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m2dvg"]
 
@@ -24,10 +71,14 @@ powerup_threshold = 0.5
 shape = SubResource("CircleShape2D_i13kl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.09375, 22)
-texture = SubResource("GradientTexture1D_vusu7")
+scale = Vector2(0.421875, 0.421875)
+texture = ExtResource("2_6pra0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gxgws")
+}
+autoplay = "idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_m2dvg")
