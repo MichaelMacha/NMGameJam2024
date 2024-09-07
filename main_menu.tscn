@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5biixw2cfcbp"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_ybg4d"]
+[ext_resource type="FontFile" uid="uid://dx66yl0fgvk8a" path="res://Cinzel-VariableFont_wght.ttf" id="2_hct50"]
+[ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://TimesNewPixel.ttf" id="3_h85kp"]
+
+[sub_resource type="Gradient" id="Gradient_cxa4y"]
+offsets = PackedFloat32Array(0, 0.04, 0.16, 0.84, 0.96, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0.243137, 1, 0, 0, 0.243137, 1, 1, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 25
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6bi74"]
+gradient = SubResource("Gradient_cxa4y")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jhwc1"]
+font = ExtResource("2_hct50")
+font_size = 72
+font_color = Color(0.99942, 0, 0.0572851, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_as6ky"]
+font = ExtResource("3_h85kp")
+font_size = 65
+
+[sub_resource type="LabelSettings" id="LabelSettings_b4iin"]
+line_spacing = 1.0
+font = ExtResource("3_h85kp")
+font_size = 65
+
+[sub_resource type="LabelSettings" id="LabelSettings_rrl1l"]
+font = ExtResource("3_h85kp")
+font_size = 65
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ybg4d")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 325.75)
+scale = Vector2(4.5, 652.5)
+texture = SubResource("GradientTexture1D_6bi74")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Freaks Per Minute"
+label_settings = SubResource("LabelSettings_jhwc1")
+
+[node name="PlayContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PlayContainer"]
+layout_mode = 2
+text = "▶️Play"
+label_settings = SubResource("LabelSettings_as6ky")
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer/PlayContainer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 18.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="OptionsContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+text = "⚙️Options"
+label_settings = SubResource("LabelSettings_b4iin")
+horizontal_alignment = 2
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer/OptionsContainer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="ExitContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ExitContainer"]
+layout_mode = 2
+text = "🔚Exit "
+label_settings = SubResource("LabelSettings_rrl1l")
+
+[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer/ExitContainer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -8.0
+offset_right = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayContainer/Label/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsContainer/Label/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitContainer/Label/ExitButton" to="." method="_on_exit_button_pressed"]
