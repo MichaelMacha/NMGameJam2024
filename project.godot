@@ -30,6 +30,10 @@ window/size/window_height_override=540
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="/home/michael/Desktop/Rhythm Survivor.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/interpolated_camera_3d/plugin.cfg")
