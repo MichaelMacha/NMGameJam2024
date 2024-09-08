@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://862qbofcqiy0"]
+[gd_scene load_steps=13 format=3 uid="uid://862qbofcqiy0"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_ybg4d"]
+[ext_resource type="Texture2D" uid="uid://0uqhwifohvby" path="res://graphics/Title Graphic.png" id="2_gm8lu"]
 [ext_resource type="FontFile" uid="uid://dx66yl0fgvk8a" path="res://fonts/Cinzel-VariableFont_wght.ttf" id="2_hct50"]
 [ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://fonts/TimesNewPixel.ttf" id="3_h85kp"]
 [ext_resource type="AudioStream" uid="uid://b7jhpcm2yhfr3" path="res://audio/music/Bass.ogg" id="4_ap7r4"]
@@ -32,19 +33,13 @@ _data = {
 font = ExtResource("2_hct50")
 font_size = 50
 font_color = Color(0.99942, 0, 0.0572851, 1)
+outline_size = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_as6ky"]
 font = ExtResource("3_h85kp")
 font_size = 65
-
-[sub_resource type="LabelSettings" id="LabelSettings_b4iin"]
-line_spacing = 1.0
-font = ExtResource("3_h85kp")
-font_size = 65
-
-[sub_resource type="LabelSettings" id="LabelSettings_rrl1l"]
-font = ExtResource("3_h85kp")
-font_size = 65
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -64,6 +59,11 @@ texture = SubResource("GradientTexture1D_4acw0")
 libraries = {
 "": SubResource("AnimationLibrary_b5lyy")
 }
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_gm8lu")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
@@ -86,6 +86,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PlayContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "▶️Play"
 label_settings = SubResource("LabelSettings_as6ky")
 
@@ -108,7 +109,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/OptionsContainer"]
 layout_mode = 2
 text = "⚙️Options"
-label_settings = SubResource("LabelSettings_b4iin")
+label_settings = SubResource("LabelSettings_as6ky")
 horizontal_alignment = 2
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer/OptionsContainer/Label"]
@@ -131,7 +132,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ExitContainer"]
 layout_mode = 2
 text = "🔚Exit "
-label_settings = SubResource("LabelSettings_rrl1l")
+label_settings = SubResource("LabelSettings_as6ky")
 
 [node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer/ExitContainer/Label"]
 layout_mode = 1
@@ -150,6 +151,20 @@ stream = ExtResource("4_ap7r4")
 autoplay = true
 bus = &"Music"
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="CreditsButton" type="Button" parent="PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_h85kp")
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayContainer/Label/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsContainer/Label/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitContainer/Label/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://bwe1yfumme6g3"]
+[gd_scene load_steps=4 format=3 uid="uid://bwe1yfumme6g3"]
+
+[ext_resource type="FontFile" uid="uid://cftqemw7jbjtm" path="res://fonts/TimesNewPixel.ttf" id="1_px5iw"]
+[ext_resource type="Script" path="res://credits.gd" id="2_ybmrq"]
+
+[sub_resource type="Theme" id="Theme_i7w8i"]
+default_font = ExtResource("1_px5iw")
+default_font_size = 48
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 16
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -7,6 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_i7w8i")
+script = ExtResource("2_ybmrq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -38,8 +49,14 @@ bbcode_enabled = true
 text = "[center]Art by Madison Butler[/center]"
 fit_content = true
 
-[node name="Madison Butler2" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Kyle Morris" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]UI Programming by Kyle Morris[/center]"
 fit_content = true
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Go Back To Menu"
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
