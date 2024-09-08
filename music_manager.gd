@@ -63,7 +63,8 @@ func update_tempo() -> void:
 		pitch_shift.pitch_scale = (BASE_BPM / bpm)
 
 func update_display_bpm() -> void:
-	$"/root/World/UI/Main/HBoxContainer/BPM Label".text = str(bpm, " BPM")
+	if get_tree().root.has_node("/root/World/UI/Main/HBoxContainer/BPM Label"):
+		$"/root/World/UI/Main/HBoxContainer/BPM Label".text = str(bpm, " BPM")
 
 
 	
