@@ -1,14 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://chjjbtvtcsecv"]
+[gd_scene load_steps=10 format=3 uid="uid://chjjbtvtcsecv"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_a61el"]
 [ext_resource type="PackedScene" uid="uid://vwrmbd3oipeb" path="res://scenes/heart.tscn" id="2_7hc6k"]
 [ext_resource type="Script" path="res://scenes/game_over_panel.gd" id="3_1lpg1"]
 [ext_resource type="Script" path="res://scenes/you_win.gd" id="3_yyd5w"]
+[ext_resource type="Texture2D" uid="uid://cgoq1ycoyo73" path="res://graphics/Rythm_Survivor_HeartBeat2.png" id="5_dwkbf"]
+[ext_resource type="Texture2D" uid="uid://fmbm5dvg4y4u" path="res://graphics/Rythm_Survivor_HealthBar.png" id="6_ocetq"]
 
-[sub_resource type="Gradient" id="Gradient_jgnhp"]
+[sub_resource type="Animation" id="Animation_bajs3"]
+resource_name = "heartbeat"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Heart:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.93, 0.93), Vector2(1, 1), Vector2(0.93, 0.93)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nnlsi"]
-gradient = SubResource("Gradient_jgnhp")
+[sub_resource type="Animation" id="Animation_83jmo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Heart:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.93, 0.93)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5670"]
+_data = {
+"RESET": SubResource("Animation_83jmo"),
+"heartbeat": SubResource("Animation_bajs3")
+}
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_a61el")
@@ -23,8 +57,9 @@ grow_vertical = 2
 
 [node name="Hearts" type="HBoxContainer" parent="Main"]
 layout_mode = 0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.25, 0.25)
 
 [node name="Heart" parent="Main/Hearts" instance=ExtResource("2_7hc6k")]
 layout_mode = 2
@@ -116,9 +151,47 @@ offset_left = -160.0
 offset_bottom = 64.0
 grow_horizontal = 0
 
-[node name="TextureRect" type="TextureRect" parent="Main/HBoxContainer"]
+[node name="Heart Beat" type="Control" parent="Main/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_nnlsi")
+
+[node name="Control" type="Control" parent="Main/HBoxContainer/Heart Beat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 21.0
+offset_right = 42.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.55, 0.55)
+
+[node name="Outline" type="TextureRect" parent="Main/HBoxContainer/Heart Beat/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_dwkbf")
+
+[node name="Heart" type="TextureRect" parent="Main/HBoxContainer/Heart Beat/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.93, 0.93)
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("6_ocetq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/HBoxContainer/Heart Beat"]
+libraries = {
+"": SubResource("AnimationLibrary_q5670")
+}
+autoplay = "heartbeat"
 
 [node name="BPM Label" type="RichTextLabel" parent="Main/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)

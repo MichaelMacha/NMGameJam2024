@@ -6,10 +6,14 @@ const MAX_BPM = 190.0 #240.0
 
 @onready var hero : Hero:
 	get():
-		return $/root/World/Hero
+		if get_tree().root.has_node("/root/World/Hero"):
+			return $/root/World/Hero
+		return null
 @onready var music : AudioStreamPlayer:
 	get():
-		return $/root/World/Music
+		if get_tree().root.has_node("/root/World/Music"):
+			return $/root/World/Music
+		return null
 @onready var pitch_shift := AudioServer.get_bus_effect(1, 0)
 
 @export var bpm = BASE_BPM:

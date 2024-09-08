@@ -27,6 +27,9 @@ func _ready():
 	
 	#Set our velocity to be our speed in the direction of the closest enemy
 	velocity = speed * direction
+	
+	#Look in the direction of fire
+	self.look_at(global_position + direction)
 
 # Just proceed along vector; can be overridden for derived projectiles to do
 # something more complicated
@@ -35,7 +38,6 @@ func _physics_process(_delta: float) -> void:
 
 # Cause injury on impact, and clear out of object queue
 func _on_harm_area_body_entered(body: Node2D) -> void:
-	print("Harming: ", body.name)
 	body.hurt((self.global_position - body.global_position).normalized())
 	queue_free()
 

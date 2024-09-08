@@ -24,7 +24,6 @@ GameManager="*res://game_manager.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=4
 window/size/resizable=false
 window/size/window_width_override=960
 window/size/window_height_override=540
@@ -71,3 +70,6 @@ right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

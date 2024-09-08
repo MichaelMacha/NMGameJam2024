@@ -1,14 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://tr67crp7utdy"]
+[gd_scene load_steps=4 format=3 uid="uid://tr67crp7utdy"]
 
 [ext_resource type="Script" path="res://rotary.gd" id="1_8nnm3"]
+[ext_resource type="Texture2D" uid="uid://cwccokst744mq" path="res://graphics/Rythm_Survivor_Axe.png" id="2_7dk3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xyi7f"]
-
-[sub_resource type="Gradient" id="Gradient_m0qwo"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_um2q1"]
-gradient = SubResource("Gradient_m0qwo")
-width = 20
 
 [node name="Rotary" type="Node2D"]
 script = ExtResource("1_8nnm3")
@@ -24,7 +19,7 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_xyi7f")
 
 [node name="Sprite2D" type="Sprite2D" parent="Origin/Shield"]
-scale = Vector2(1, 20)
-texture = SubResource("GradientTexture1D_um2q1")
+rotation = 1.5708
+texture = ExtResource("2_7dk3y")
 
 [connection signal="body_entered" from="Origin/Shield" to="." method="_on_shield_body_entered"]

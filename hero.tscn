@@ -1,11 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpm88xvfchvj5"]
+[gd_scene load_steps=19 format=3 uid="uid://dpm88xvfchvj5"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_3rrxq"]
 [ext_resource type="PackedScene" uid="uid://tr67crp7utdy" path="res://rotary.tscn" id="2_t1l2d"]
 [ext_resource type="Texture2D" uid="uid://dhetcjfwyh0mx" path="res://graphics/Rythm_Survivor_MC_Side.png" id="3_7d3jg"]
 [ext_resource type="Texture2D" uid="uid://cci2t0t0hm8di" path="res://graphics/Rythm_Survivor_MC_Front.png" id="3_cdwsw"]
+[ext_resource type="Texture2D" uid="uid://d2r5jbmikqbf" path="res://graphics/Rythm_Survivor_MC_CrossbowLeft.png" id="4_lcdk1"]
 [ext_resource type="Texture2D" uid="uid://bpstl65h263vc" path="res://graphics/Rythm_Survivor_MC_Back.png" id="5_1rrvb"]
+[ext_resource type="Texture2D" uid="uid://bxmvpg5blga4j" path="res://graphics/Rythm_Survivor_MC_CrossbowFrontBack.png" id="5_upqc6"]
 [ext_resource type="Texture2D" uid="uid://b3xetgblrdaky" path="res://graphics/Rythm_Survivor_MC_SideLeft.png" id="6_0tpct"]
+[ext_resource type="Texture2D" uid="uid://nc0pjfooy5qq" path="res://graphics/Rythm_Survivor_MC_Crossbow.png" id="7_mttye"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28k2v"]
 
@@ -51,6 +54,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.374446, 0.4016)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Sprite2D:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_lcdk1")]
+}
 
 [sub_resource type="Animation" id="Animation_1qb6v"]
 resource_name = "walk down"
@@ -89,7 +128,43 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, -7)]
+"values": [Vector2(9, -9)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_upqc6")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Sprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.374, 0.402)]
 }
 
 [sub_resource type="Animation" id="Animation_6npnx"]
@@ -146,6 +221,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.374, 0.402)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Sprite2D:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_lcdk1")]
+}
 
 [sub_resource type="Animation" id="Animation_xd8x3"]
 resource_name = "walk right"
@@ -172,7 +283,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(15, -8)]
+"values": [Vector2(7, -7)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -185,6 +296,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.374446, 0.4016)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Sprite2D:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_mttye")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Sprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_2otd4"]
@@ -226,13 +373,6 @@ _data = {
 "walk up": SubResource("Animation_2otd4")
 }
 
-[sub_resource type="Gradient" id="Gradient_rwm2t"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_aww3f"]
-gradient = SubResource("Gradient_rwm2t")
-width = 8
-height = 8
-
 [node name="Hero" type="CharacterBody2D"]
 collision_layer = 2
 motion_mode = 1
@@ -264,6 +404,9 @@ visible = false
 position = Vector2(-12, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
-texture = SubResource("GradientTexture2D_aww3f")
+position = Vector2(20, 0)
+scale = Vector2(0.374446, 0.4016)
+texture = ExtResource("4_lcdk1")
+offset = Vector2(-18, 22)
 
 [connection signal="timeout" from="Invulnerability" to="." method="_on_invulnerability_timeout"]

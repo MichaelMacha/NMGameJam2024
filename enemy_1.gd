@@ -21,7 +21,9 @@ var state : State:
 
 @onready var hero : Hero:
 	get():
-		return get_tree().root.get_node("/root/World/Hero")
+		if get_tree().root.has_node("/root/World/Hero"):
+			return get_tree().root.get_node("/root/World/Hero")
+		return null
 
 @export_range(0.0, 1.0) var powerup_threshold = 0.2
 
@@ -53,8 +55,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	print("COLLISION with ", body)
-	
 	#We know body is a hero on the basis of the collision layer, so there should
 	#be no need to check.
 	var hero_ : Hero = body

@@ -1,14 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgvvha4sndups"]
+[gd_scene load_steps=5 format=3 uid="uid://dgvvha4sndups"]
 
 [ext_resource type="Script" path="res://projectile.gd" id="1_r6vui"]
+[ext_resource type="Texture2D" uid="uid://bm6oikircnaal" path="res://graphics/Rythm_Survivor_Stake.png" id="2_7ppl5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8vry"]
-
-[sub_resource type="Gradient" id="Gradient_a7d4m"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_uagss"]
-gradient = SubResource("Gradient_a7d4m")
-width = 20
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mp4or"]
 radius = 15.0333
@@ -22,8 +17,9 @@ script = ExtResource("1_r6vui")
 shape = SubResource("RectangleShape2D_i8vry")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 20)
-texture = SubResource("GradientTexture1D_uagss")
+rotation = -1.5708
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_7ppl5")
 
 [node name="HarmArea" type="Area2D" parent="."]
 collision_layer = 0

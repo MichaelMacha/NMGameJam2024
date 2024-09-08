@@ -12,3 +12,5 @@ func _process(_delta: float) -> void:
 		var speed : float = \
 			lerp(0.0, max_speed, clampf(d.length()/distance_strength, 0.0, 1.0))
 		self.position += d.normalized() * speed
+		
+		

@@ -1,15 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://g204d0ikuion"]
+[gd_scene load_steps=4 format=3 uid="uid://g204d0ikuion"]
 
 [ext_resource type="Script" path="res://powerup.gd" id="1_bv0g5"]
+[ext_resource type="Texture2D" uid="uid://dfvcqshmlvk7w" path="res://graphics/Rythm_Survivor_Powerup.png" id="2_whjkp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqx6l"]
 radius = 21.095
-
-[sub_resource type="Gradient" id="Gradient_tf4k7"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_h45kp"]
-gradient = SubResource("Gradient_tf4k7")
-width = 40
 
 [node name="Powerup" type="Area2D"]
 collision_layer = 0
@@ -20,8 +15,7 @@ script = ExtResource("1_bv0g5")
 shape = SubResource("CircleShape2D_cqx6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
-scale = Vector2(1, 40)
-texture = SubResource("GradientTexture1D_h45kp")
+scale = Vector2(0.671875, 0.671875)
+texture = ExtResource("2_whjkp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
