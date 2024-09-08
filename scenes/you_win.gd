@@ -4,7 +4,12 @@ var press_any_key := false
 
 func reveal() -> void:
 	self.visible = true
+	$"You Win Sound".play()
+	$"/root/World/UI/Main/HBoxContainer/Heart Beat/Control/Heart".visible = false
 	$PressAnyKeyTimer.start()
+	if get_tree().root.has_node("/root/World/Hero"):
+		$/root/World/Hero.queue_free()
+	$/root/World/Music.stop()
 
 func _on_press_any_key_timer_timeout() -> void:
 	$"PanelContainer/VBoxContainer/Press Any Key".visible = true
