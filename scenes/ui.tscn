@@ -106,6 +106,7 @@ one_shot = true
 
 [node name="You Win Sound" type="AudioStreamPlayer" parent="Main/You Win"]
 stream = ExtResource("4_nloo2")
+volume_db = -6.0
 
 [node name="Game Over" type="MarginContainer" parent="Main"]
 visible = false
